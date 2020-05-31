@@ -1,0 +1,18 @@
+      , loco , 00
+      , stod , sum
+      , inpac,
+      , stod , n
+initw1, lodd , n
+      , jzer , endw1
+      , addd , sum
+      , stod , sum
+      , lodd , n
+      , subd , one
+      , stod , n
+      , jump , initw1
+endw1 , lodd , sum
+      , outac,
+      , halt ,
+sum   , ds   , 1
+n     , ds   , 1
+one   , ds   , 1
