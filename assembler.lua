@@ -10,22 +10,24 @@
 --  También escribí comentarios sobre como funciona Lua entre corchetes.
 --]]
 
---[[In lua, tables are the only data structure. Lists are also tables]]
+--[[In lua, tables are the only data structure.
+-- Lists are also tables.
+-- Tables are also a namespace.]]
 symbol_table = {}
 instruction_list = {} --list of instruction mnemonics
-isa = { ['LODD'] = '00',
-        ['STOD'] = '10',
-        ['ADDD'] = '20',
-        ['SUBD'] = '30',
-        ['LOCO'] = '40',
-        ['JPOS'] = '50',
-        ['JNEG'] = '60',
-        ['JZER'] = '70',
-        ['JNZE'] = '80',
-        ['JUMP'] = '90',
-        ['INPAC'] = 'A0',
-        ['OUTAC'] = 'B0',
-        ['HALT'] = 'C0'}
+isa = { LODD = '00',
+        STOD = '10',
+        ADDD = '20',
+        SUBD = '30',
+        LOCO = '40',
+        JPOS = '50',
+        JNEG = '60',
+        JZER = '70',
+        JNZE = '80',
+        JUMP = '90',
+        INPAC = 'A0',
+        OUTAC = 'B0',
+        HALT = 'C0'}
 
 --[[ NOTE:
 --  It would be convenient if there were two more instructions:
