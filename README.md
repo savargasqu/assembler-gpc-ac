@@ -36,7 +36,7 @@ Lua es un lenguaje interpretado, por lo que no es necesario compilar el código.
 En el directorio `example01/` de este repositorio hay dos archivos:
 `ex01_input.csv` y `ex01_output.txt`.
 
-Ejecutando el archivo como:
+Ejecutando el código con el archivo de entrada y un nuevo archivo de salida tenemos:
 
 ```
 $ lua assembler.lua example01/ex01_input.csv ./out.txt
