@@ -30,7 +30,7 @@ la instrucción está mal escrita.
 El programa _no_ distingue mayúsculas y minúsculas.
 
 
-# Ejemplo:
+## Ejemplo:
 
 Lua es un lenguaje interpretado, por lo que no es necesario compilar el código.
 En el directorio `example01/` de este repositorio hay dos archivos:
@@ -55,7 +55,7 @@ $ echo $?
 
 ## ISA:
 
-| Machine language       | mnemonic    | Long name          | action                 | ciclos  |
+| Machine language       | mnemonic    | Long name          | action                 | cycles  |
 | ---------------------- | ----------- | ------------------ | ---------------------- | ------- |
 | `0000 0000 xxxx xxxx`  | `LODD`      | Load direct        | `AC M[x]`              | 7       |
 | `0001 0000 xxxx xxxx`  | `STOD`      | Store direct       | `M[x] AC`              | 7       |
@@ -75,7 +75,7 @@ $ echo $?
 ## Instalación de Lua
 
 En Windows, la página oficial de [Lua](https://www.lua.org/start.html) recomienda
-usar [LuaDist](http://luadist.org/)
+usar [LuaDist](http://luadist.org/).
 
 Lua viene por defecto en algunas distribuciones de Linux.
 También puede ser instalado con su package manager de preferencia.
