@@ -10,20 +10,23 @@ para el computador de propósito general propuesto en clase.
 
 ## Uso
 
-El programa se puede ejecutar desde un emulador de terminal y recibe dos argumentos:
+El programa se puede ejecutar desde un emulador de terminal. Sin argumentos,
+el programa lee _stdin_ (deja de leer con un EOF), y escribe a _stdout_.
+
+También puede leer dos argumentos:
 
 - El primer argumento debe ser un archivo csv con el código _assembly_.
   La primera columna del archivo está reservada para las etiquetas y nombres
   de variables. La segunda columna lleva los nombres mnemotécnicos de las instrucciones.
-  La tercera columna lleva el operando de la instrucción.
+  La tercera columna (opcionalmente) lleva el operando de la instrucción.
 
 - El segundo argumento será el archivo de texto en el que se quiere guardar
   los códigos hexadecimales de las instrucciones de maquina. Si el archivo no
   existe, el programa creará uno. Este argumento es opcional, si no hay segundo
   argumento, el programa imprime a la salida de la terminal (_stdout_).
 
-Es importante que las instrucciones estén bien escritas (tal como están en la tabla del ISA),
-si una instrucción está mal escrita, el programa _no_ fallará, solo omitirá la instrucción.
+Es importante que las instrucciones estén bien escritas, tal como están en la tabla del ISA).
+Si una instrucción está mal escrita, el programa _no_ fallará, solo omitirá la instrucción.
 Si alguna linea de las instrucciones de maquina solo tiene dos dígitos,
 la instrucción está mal escrita.
 El programa _no_ distingue mayúsculas y minúsculas.
@@ -31,7 +34,6 @@ El programa _no_ distingue mayúsculas y minúsculas.
 
 ## Ejemplo:
 
-Lua es un lenguaje interpretado, por lo que no es necesario compilar el código.
 En el directorio `example01/` de este repositorio hay dos archivos:
 `ex01_input.csv` y `ex01_output.txt`.
 
@@ -87,8 +89,8 @@ la página oficial de [Lua](https://www.lua.org/start.html) recomienda
 usar [LuaDist](http://luadist.org/), pero esta distribución necesita CMake y WinGW
 para ser compilada.
 
-**linux**: Descargar con su package manager de preferencia; apt, rpm, pacman, etc.
-Algunas distribuciones tienen Lua instalado por defecto.
+**linux**: Descargar con su package manager de preferencia (apt, rpm, pacman).
+Algunas distribuciones ya tienen Lua instalado.
 
 **macOS**: Descargar con su package manager de preferencia. (homebrew, macports).
 
