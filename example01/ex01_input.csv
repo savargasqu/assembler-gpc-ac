@@ -1,18 +1,26 @@
-      , loco , 00
-      , stod , sum
-      , inpac,
-      , stod , n
-initw1, lodd , n
-      , jzer , endw1
-      , addd , sum
-      , stod , sum
-      , lodd , n
-      , subd , one
-      , stod , n
-      , jump , initw1
-endw1 , lodd , sum
-      , outac,
-      , halt ,
-sum   , ds   , 1
-n     , ds   , 1
-one   , ds   , 1
+        , loco , 00
+        , stod , sum
+        , stod , i
+forcond1, lodd , i
+        , subd , tres
+        , jpos , endfor1
+        , loco , a
+        , addd , i
+        , ldix , 
+        , lodd , sum
+        , addi , 00
+        , stod , sum
+        , loco , 1
+        , addd , i
+        , stod , i
+        , jump , forcond1
+endfor1 , lodd , sum
+        , outac,
+        , halt ,
+a       , ds   , 4
+        ,      ,
+        ,      ,
+        ,      ,
+i       , ds   , 1
+sum     , ds   , 1
+tres    , ds   , 1
