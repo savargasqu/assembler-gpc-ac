@@ -25,7 +25,7 @@ También puede leer dos argumentos:
   existe, el programa creará uno. Este argumento es opcional, si no hay segundo
   argumento, el programa imprime a la salida de la terminal (_stdout_).
 
-Es importante que las instrucciones estén bien escritas, tal como están en la tabla del ISA).
+Es importante que las instrucciones estén bien escritas, tal como están en la tabla del ISA.
 Si una instrucción está mal escrita, el programa _no_ fallará, solo omitirá la instrucción.
 Si alguna linea de las instrucciones de maquina solo tiene dos dígitos,
 la instrucción está mal escrita.
