@@ -51,7 +51,7 @@ function main()
   --If there's no second argument (file), write to stdout
   if arg[2] ~= nil then
     out_stream = io.open(arg[2], 'w')
-    io.output(outstream)
+    io.output(out_stream)
   end
   -- Replace symbols and write machine code
   write_machine_code(out_stream)
@@ -91,13 +91,13 @@ end --fn
 --[[write_machine_code: Writes (to the current open stream) the contents of
 --  the inst_list as hexadecimal strings, according to the symbol_table.]]
 function write_machine_code()
-  m_instruction = ''  --String to concatenate mnemonic-operand pairs
   --Iterate over the list of instructions
   for _, tuple in pairs(inst_list) do 
     --[[NOTE: `unpack` is a global function in Lua < 5.1,
     --  but it's a method in lua >= 5.2.]]
     --mnemonic, operand = unpack(tuple) -- Lua 5.1
     mnemonic, operand = table.unpack(tuple) -- Lua 5.3
+    m_instruction = ''  --String to concatenate mnemonic-operand pairs
     is_inst = true     -- is the mnemonic an instruction or a DS?
     --Check instruction
     if mnemonic == '' or mnemonic == 'DS' then
