@@ -8,51 +8,6 @@ Universidad Nacional de Colombia**
 Implementación en el lenguaje de programación Lua de un ensamblador
 para el computador de propósito general propuesto en clase.
 
-## Uso
-
-El programa se puede ejecutar desde un emulador de terminal. Sin argumentos,
-el programa lee _stdin_ (deja de leer con un EOF), y escribe a _stdout_.
-
-También puede leer dos argumentos:
-
-- El primer argumento debe ser un archivo csv con el código _assembly_.
-  La primera columna del archivo está reservada para las etiquetas y nombres
-  de variables. La segunda columna lleva los nombres mnemotécnicos de las instrucciones.
-  La tercera columna (opcionalmente) lleva el operando de la instrucción.
-
-- El segundo argumento será el archivo de texto en el que se quiere guardar
-  los códigos hexadecimales de las instrucciones de maquina. Si el archivo no
-  existe, el programa creará uno. Este argumento es opcional, si no hay segundo
-  argumento, el programa imprime a la salida de la terminal (_stdout_).
-
-Es importante que las instrucciones estén bien escritas, tal como están en la tabla del ISA.
-Si una instrucción está mal escrita, el programa _no_ fallará, solo omitirá la instrucción.
-Si alguna linea de las instrucciones de maquina solo tiene dos dígitos,
-la instrucción está mal escrita.
-El programa _no_ distingue mayúsculas y minúsculas.
-
-
-## Ejemplo:
-
-En el directorio `example01/` de este repositorio hay dos archivos:
-`ex01_input.csv` y `ex01_output.txt`.
-
-Ejecutando el código con el archivo de entrada y un nuevo archivo de salida tenemos:
-
-```
-$ lua assembler.lua example01/ex01_input.csv ./out.txt
-> symbol table: {...}
-```
-
-Se debería obtener un archivo de texto `out.txt` con las instrucciones de maquina.
-Para comprobar que el programa se está ejecutando correctamente,
-este archivo se puede comparar con la salida esperada:
-
-```
-$ diff out.txt example01/ex01_output.txt
-$ echo $?
-> 0
-```
 
 ## ISA:
 
@@ -76,6 +31,54 @@ $ echo $?
 | `1111 0000 xxxx xxxx` | `STOI`     | Store indirect   | `M[IX + x] <- AC`       | 7      |
 | `0000 0001 xxxx xxxx` | `ADDI`     | Add indirect     | `AC <- AC + M[IX + x]`  | 7      |
 | `0000 0010 xxxx xxxx` | `SUBI`     | Sub indirect     | `AC <- AC - M[IX + x]`  | 7      |
+
+
+## Uso
+
+`lua assembler.lua <input> <output>`
+
+Donde `<input>` y `<output>` son argumentos opcionales que indican el nombre de
+algún archivo.
+
+Sin argumentos, el ensamblador lee _stdin_ (deja de leer con un EOF),
+y escribe a _stdout_.
+
+- `input`: Archivo csv con el código _assembly_.
+  La primera columna está reservada para las etiquetas y nombres
+  de variables; La segunda columna lleva los nombres mnemotécnicos de las instrucciones;
+  La tercera columna (opcional) lleva el operando de la instrucción.
+
+- `output`: Archivo de texto en el que se escriben los códigos hexadecimales
+  de las instrucciones de maquina. Si el archivo no existe, el programa creará uno.
+
+Es importante que las instrucciones estén bien escritas, tal como están en la tabla del ISA.
+Si una instrucción está mal escrita, el programa _no_ fallará, solo omitirá la instrucción.
+Si alguna linea de las instrucciones de maquina solo tiene dos dígitos,
+la instrucción está mal escrita.
+El programa _no_ distingue mayúsculas y minúsculas.
+
+
+## Ejemplo:
+
+En el directorio `example01/` de este repositorio hay dos archivos:
+`input01.csv` y `output01.txt`.
+
+Ejecutando el código con el archivo de entrada y un nuevo archivo de salida tenemos:
+
+```
+$ lua assembler.lua example01/ex01_input.csv ./out.txt
+> symbol table: {...}
+```
+
+Se debería obtener un archivo de texto `out.txt` con las instrucciones de maquina.
+Para comprobar que el programa se está ejecutando correctamente,
+este archivo se puede comparar con la salida esperada:
+
+```
+$ diff out.txt example01/ex01_output.txt
+$ echo $?
+> 0
+```
 
 
 ## Instalación de Lua
