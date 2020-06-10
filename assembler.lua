@@ -33,30 +33,25 @@ isa = { LODD = '00', -- namespaces
         SUBI = '02'}
 
 function main()
+  local in_stream, out_stream --[[Declare variables used in this function]]
+  --FIRST PASS (READ AND PARSE):
   --[[NOTE: The `arg` array keeps command line arguments.
   --  Variables can have default values by short-circuiting the `or` operator.]]
-  -- FIRST PASS (READ AND PARSE)
-  -- If there are no arguments, read from stdin
-  local input_filename = arg[1] or stdin
-  -- Generate symbol table and instruction list
-  parse_file(input_filename)
-  -- Print the symbol table to stdin (for debugging)
+  --Check first argument
+  in_stream = arg[1] or stdin
+  --Generate symbol table and instruction list
+  parse_file(in_stream)
+  --Print the symbol table to stdin (for debugging)
   print('symbol_table: ' .. format_table(symbol_table))
-  --[[For debugging
-    for _, pair in pairs(inst_list) do
-      print('symbol_table: ' .. format_table(pair))
-    end
-  --]]
-  -- SECOND PASS (FORMAT AND WRITE)
-  --If there's no second argument (file), write to stdout
-  if arg[2] ~= nil then
+  --SECOND PASS (FORMAT AND WRITE):
+  --Check second argument
+  if arg[2] ~= nil then --write to file
     out_stream = io.open(arg[2], 'w')
     io.output(out_stream)
   end
-  -- Replace symbols and write machine code
-  write_machine_code(out_stream)
-  --If the file was opened, close it
-  if outfile ~= nil then
+  --Replace symbols and write machine code
+  write_machine_code()
+  if out_stream ~= nil then --close the stream
     io.close(out_stream)
   end
 end --main
@@ -91,32 +86,35 @@ end --fn
 --[[write_machine_code: Writes (to the current open stream) the contents of
 --  the inst_list as hexadecimal strings, according to the symbol_table.]]
 function write_machine_code()
+  local mnemonic, operand = ''
+  local m_instruction = ''  --String to concatenate mnemonic-operand pairs
+  local is_inst = true      -- is the mnemonic an instruction or a DS?
   --Iterate over the list of instructions
   for _, tuple in pairs(inst_list) do 
     --[[NOTE: `unpack` is a global function in Lua < 5.1,
     --  but it's a method in lua >= 5.2.]]
     --mnemonic, operand = unpack(tuple) -- Lua 5.1
     mnemonic, operand = table.unpack(tuple) -- Lua 5.3
-    m_instruction = ''  --String to concatenate mnemonic-operand pairs
-    is_inst = true     -- is the mnemonic an instruction or a DS?
+    m_instruction = ''
+    is_inst = true
     --Check instruction
-    if mnemonic == '' or mnemonic == 'DS' then
-      m_instruction = '----' -- It's a variable
+    if mnemonic == '' or mnemonic == 'DS' then --it's a variable
+      m_instruction = '----'
       is_inst = false
-    elseif isa[mnemonic] ~= nil then
-      m_instruction = isa[mnemonic] -- It's an instruction
+    elseif isa[mnemonic] ~= nil then --it's an instruction
+      m_instruction = isa[mnemonic]
     end
     --Check operand
     if is_inst then
-      if operand == '' then --There's no operand
+      if operand == '' then --there's no operand
         m_instruction = m_instruction .. '00'
-      elseif symbol_table[operand] ~= nil then --The operand is a symbol.
+      elseif symbol_table[operand] ~= nil then --the operand is a symbol
         --Replace the symbol with its memory address
         m_instruction = m_instruction .. symbol_table[operand]
-      else --It's a constant
+      else --the operand is a constant
         m_instruction = m_instruction .. to_hex(operand)
       end
-    end -- is_inst
+    end --is_inst
     --Write instruction to file (or stdout)
     io.write(m_instruction..'\n') 
   end --for inst_list
