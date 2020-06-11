@@ -66,7 +66,7 @@ En el directorio `example01/` de este repositorio hay dos archivos:
 Ejecutando el código con el archivo de entrada y un nuevo archivo de salida tenemos:
 
 ```
-$ lua assembler.lua example01/ex01_input.csv ./out.txt
+$ lua assembler.lua example01/input01.csv ./out.txt
 > symbol table: {...}
 ```
 
@@ -75,7 +75,7 @@ Para comprobar que el programa se está ejecutando correctamente,
 este archivo se puede comparar con la salida esperada:
 
 ```
-$ diff out.txt example01/ex01_output.txt
+$ diff out.txt example01/output01.txt
 $ echo $?
 > 0
 ```

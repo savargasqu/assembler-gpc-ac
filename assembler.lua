@@ -40,7 +40,7 @@ function main()
   --Check first argument
   in_stream = arg[1] or stdin
   --Generate symbol table and instruction list
-  parse_file(in_stream)
+  parse_file(in_stream, ',') --the second argument is the separator
   --Print the symbol table to stdin (for debugging)
   print('symbol_table: ' .. format_table(symbol_table))
   --SECOND PASS (FORMAT AND WRITE):
@@ -59,13 +59,13 @@ end --main
 
 --[[parse_file: Takes a file (or stream) and reads each line,
 --  filling the symbol table and preparing the instruction list accordingly.]]
-function parse_file(file_name)
+function parse_file(file_name, sep)
   local mem_addr = 0
   local tokens = {}
   --[[Lua can open and close files with the `in io.lines()` construct]]
   for line in io.lines(file_name) do
     --Parse each line of the file
-    tokens = parse_line(line)
+    tokens = parse_line(line, sep)
     -- Sanitize list. Make sure there are 3 elements
     for i = 1,3 do
       tokens[i] = tokens[i] or ''
