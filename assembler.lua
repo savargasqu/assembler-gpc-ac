@@ -76,9 +76,8 @@ function parse_file(file_name, sep)
       symbol_table[tokens[1]] = to_hex(mem_addr)
     end -- if label
     mem_addr = mem_addr + 1 --[[Lua doesn't have `++` or `+=` operators]]
-
-  --Add the instruction and operand to the instruction list
-  table.insert(inst_list, {tokens[2], tokens[3]})
+    --Add the instruction and operand to the instruction list
+    table.insert(inst_list, {tokens[2], tokens[3]})
   end --for
 end --fn
 
