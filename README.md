@@ -7,9 +7,10 @@ Universidad Nacional de Colombia**
 
 Implementación en el lenguaje de programación Lua de un ensamblador
 para el computador de propósito general propuesto en clase.
+El computador tiene 18 instrucciones, presentadas en la siguiente tabla:
 
 
-## ISA:
+### ISA:
 
 | Machine language      | mnemonic   | Long name        | action                  | cycles |
 | --------------------- | ---------- | ---------------- | ----------------------- | ------ |
@@ -33,7 +34,7 @@ para el computador de propósito general propuesto en clase.
 | `0000 0010 xxxx xxxx` | `SUBI`     | Sub indirect     | `AC <- AC - M[IX + x]`  | 7      |
 
 
-## Uso
+### Uso
 
 `lua assembler.lua <input> <output>`
 
@@ -58,7 +59,7 @@ la instrucción está mal escrita.
 El programa _no_ distingue mayúsculas y minúsculas.
 
 
-## Ejemplo:
+### Ejemplo:
 
 En el directorio `example01/` de este repositorio hay dos archivos:
 `input01.csv` y `output01.txt`.
@@ -79,21 +80,3 @@ $ diff out.txt example01/output01.txt
 $ echo $?
 > 0
 ```
-
-
-## Instalación de Lua
-
-**Windows**: la forma más conveniente de usar Lua es descargar
-un interprete ya compilado. En 
-[LuaBinaries.net](http://luabinaries.sourceforge.net/download.html)
-hay binarios para Windows x86 y x64.
-
-la página oficial de [Lua](https://www.lua.org/start.html) recomienda
-usar [LuaDist](http://luadist.org/), pero esta distribución necesita CMake y WinGW
-para ser compilada.
-
-**linux**: Descargar con su package manager de preferencia (apt, rpm, pacman).
-Algunas distribuciones ya tienen Lua instalado.
-
-**macOS**: Descargar con su package manager de preferencia. (homebrew, macports).
-
