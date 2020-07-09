@@ -10,7 +10,7 @@ para el computador de propósito general propuesto en clase.
 El computador tiene 18 instrucciones, presentadas en la siguiente tabla:
 
 
-### ISA:
+### ISA
 
 | Machine language      | mnemonic   | Long name        | action                  | cycles |
 | --------------------- | ---------- | ---------------- | ----------------------- | ------ |
@@ -59,7 +59,7 @@ la instrucción está mal escrita.
 El programa _no_ distingue mayúsculas y minúsculas.
 
 
-### Ejemplo:
+### Ejemplo
 
 En el directorio `example01/` de este repositorio hay dos archivos:
 `input01.csv` y `output01.txt`.
